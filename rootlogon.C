@@ -1,3 +1,3 @@
 {
-gROOT->LoadMacro("my_class.cxx");
+    gROOT->LoadMacro("my_class.cxx");
 }

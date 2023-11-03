@@ -5,20 +5,16 @@
 #include "my_class.h"
 
 void readTree() {
-    // Open your file
     TFile* rootFile = TFile::Open("tree_file.root", "READ");
-
-    // Get your TTree
+  
     TTree* tree = (TTree*)rootFile->Get("tree");
 
-    // Set the branch address
     Double_t px, py, pz;
 
     tree->SetBranchAddress("px", &px);
     tree->SetBranchAddress("py", &py);
     tree->SetBranchAddress("pz", &pz);
 
-    // Exercise 8: Fill a TH2 with px and py and draw it
     TCanvas* c1 = new TCanvas("c1", "Scatter Plot", 800, 600);
     TH2D* hist2D = new TH2D("hist2D", "Scatter plot of px vs py", 100, -0.1, 0.1, 100, -0.1, 0.1);
 
@@ -31,7 +27,6 @@ void readTree() {
     hist2D->Draw("COLZ");
     c1->SaveAs("scatter_plot.png");
 
-    // Exercise 9: Use TTree::Draw to draw a scatter plot of px*py vs pz with a magnitude criterion
     TCanvas* c2 = new TCanvas("c2", "Scatter Plot With Criterion", 800, 600);
     TH2D* hist2DWithCriterion = new TH2D("hist2DWithCriterion", "Scatter Plot of px*py vs pz", 100, -0.1, 0.1, 100, -0.1, 0.1);
 
